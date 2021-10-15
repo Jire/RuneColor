@@ -14,14 +14,13 @@ class RS2HSLColorPalette(val rs2HSLColors: ShortArray) {
 	}
 	
 	val rs2HSLToRGB by lazy(LazyThreadSafetyMode.NONE) {
-		rs2HSLColors.mapIndexed { index, hsl -> hsl to rgbColors[index] }
+		rs2HSLColors.mapIndexed { index, hsl -> RS2HSLColor(hsl) to RGBColor(rgbColors[index]) }
 	}
 	
 	fun closest(
 		rgbColor: RGBColor,
 		rgbColorDeltaFormula: RGBColorDeltaFormula = RGBColorDeltaFormula.DEFAULT
 	) = rs2HSLToRGB
-		.map { RS2HSLColor(it.first) to RGBColor(it.second) }
 		.sortedBy { rgbColorDeltaFormula.delta(rgbColor, it.second) }
 		.map { it.first }
 	

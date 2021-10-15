@@ -27,7 +27,7 @@ This will then produce a result, for example:
 
 ```kotlin
 val redHSL = rgbToRS2HSL(255, 0, 0)
-println(redHSL) // HSL 1023, which is RGB color #ffffff
+println(redHSL) // HSL 1023, which is RGB color #ff0000
 ```
 
 The problem is, within the RuneScape world, such a color does not actually exist, making for strange visuals:
